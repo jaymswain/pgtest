@@ -1,0 +1,7 @@
+gather_facts: false
+hosts: all
+tasks:
+  -
+    become: true
+    name: "Run PG DB Scripts"
+    shell: "psql --host={{ PG_DB_ENDPOINT }} --port={{ PG_DB_PORT }} --username={{ PG_DB_USERNAME }} --dbname={{ PG_DB_NAME }} --o /tmp/get_pg_jenkinsinfo.log -t -A --file /apps/jenkins/get_pg_dbinfo.sql"
